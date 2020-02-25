@@ -6,6 +6,7 @@
 #feedbackDiv{
     width: 300px;
     height: 400px;
+    color: white;
 }
 #contentDiv{
     height: fit-content;
