@@ -18,6 +18,13 @@ let feedbackRadius = document.getElementById('radius');
 let feedbackArea = document.getElementById('area');
 let feedbackPerimeter = document.getElementById('perimeter');
 
+// DELETE SHAPE FUNCTION
+let removeShape = (object) => {
+    object.div.addEventListener('dblclick', () => {
+        drawingSurface.removeChild(object.div);
+    })
+}
+// FEEDBACK SPAN FUNCTIONS
 let addNameSpan = (object) => {
     // feedbackName.removeChild();
     let newSpan = document.createElement('span');
@@ -56,8 +63,10 @@ let addPerimeterSpan = (object) => {
     feedbackPerimeter.appendChild(newSpan);
 }
 
+// EVENT LISTENERS ON BUTTONS
+// EVENT LISTENERS ON DIVS
 rectBtn.addEventListener('click', () => {
-    let newShape = new Rectangle(rectWidth.value, rectHeight.value);
+    let newShape = new Rectangle(rectWidth.value, rectHeight.value, 'Rectangle');
     newShape.div.addEventListener('click', () => {
         addNameSpan(newShape);
         addWidthSpan(newShape);
@@ -65,9 +74,10 @@ rectBtn.addEventListener('click', () => {
         addAreaSpan(newShape);
         addPerimeterSpan(newShape);
     })
+    removeShape(newShape);
 })
 squareBtn.addEventListener('click', () => {
-    let newShape = new Square(squSide.value);
+    let newShape = new Square(squSide.value, 'Square');
     newShape.div.addEventListener('click', () => {
         addNameSpan(newShape);
         addWidthSpan(newShape);
@@ -75,18 +85,20 @@ squareBtn.addEventListener('click', () => {
         addAreaSpan(newShape);
         addPerimeterSpan(newShape);
     })
+    removeShape(newShape);
 })
 circleBtn.addEventListener('click', () => {
-    let newShape = new Circle(radius.value);
+    let newShape = new Circle(radius.value, 'Circle');
     newShape.div.addEventListener('click', () => {
         addNameSpan(newShape);
         addRadiusSpan(newShape);
         addAreaSpan(newShape);
         addPerimeterSpan(newShape);
     })
+    removeShape(newShape);
 })
 triBtn.addEventListener('click', () => {
-    let newShape = new Triangle(triHeight.value);
+    let newShape = new Triangle(triHeight.value, 'Triangle');
     newShape.div.addEventListener('click', () => {
         addNameSpan(newShape);
         addWidthSpan(newShape);
@@ -94,14 +106,17 @@ triBtn.addEventListener('click', () => {
         addAreaSpan(newShape);
         addPerimeterSpan(newShape);
     })
+    removeShape(newShape);
 })
 
+// PROTOTYPE CLASS, METHODS AND SUB-CLASSES
 class Shape {
-    constructor(width, height) {
+    constructor(width, height, name) {
         this.randomCoord(0, 600);
         this.randomCoord(0, 400);
         this.width = width;
         this.height = height;
+        this.name = name;
         this.createShape();
         this.area();
     }
@@ -130,8 +145,8 @@ class Shape {
 }
 
 class Rectangle extends Shape {
-    constructor(width, height) {
-        super(width, height);
+    constructor(width, height, name) {
+        super(width, height, name);
         this.div.className = 'shape rect';
         this.perimeter();
     }
@@ -142,8 +157,8 @@ class Rectangle extends Shape {
 }
 
 class Square extends Shape {
-    constructor(sideLength) {
-        super(sideLength, sideLength);
+    constructor(sideLength, name) {
+        super(sideLength, sideLength, name);
         this.div.className = 'shape square';
         this.perimeter();
     }
@@ -154,8 +169,8 @@ class Square extends Shape {
 }
 
 class Circle extends Shape {
-    constructor(radius) {
-        super(radius, radius);
+    constructor(radius, name) {
+        super(radius, radius, name);
         this.radius = radius;
         this.div.className = 'shape circle';
         this.area();
@@ -172,15 +187,22 @@ class Circle extends Shape {
 }
 
 class Triangle extends Shape {
-    constructor(height) {
-        super(height, height);
+    constructor(height, name) {
+        super(height, height, name);
         this.div.className = 'shape';
         this.div.style.borderBottom = `${this.height}px solid yellow`;
         this.div.style.borderRight = `${this.height}px solid transparent`;
         this.area();
+        this.perimeter();
     }
 
     area = () => {
         this.area = 0.5 * (this.height * this.width);
+    }
+
+    perimeter = () => {
+        let thirdSideSquared = (parseInt(this.height) * parseInt(this.height)) + (parseInt(this.height) * parseInt(this.height));
+        let thirdSide = Math.sqrt(thirdSideSquared);
+        this.perimeter = 2 * parseInt(this.height) + thirdSide;
     }
 }
