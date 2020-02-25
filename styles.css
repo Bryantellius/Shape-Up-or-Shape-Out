@@ -1,6 +1,7 @@
 #drawingSurface{
     height: 400px;
     width: 600px;
+    overflow: hidden;
 }
 #feedbackDiv{
     width: 300px;
@@ -8,4 +9,21 @@
 }
 #contentDiv{
     height: fit-content;
+}
+#drawingSurface{
+    position: relative;
+}
+.shape{
+    position: absolute;
+    opacity: 50%;
+}
+.rect{
+    background-color: green;
+}
+.square{
+    background-color: red;
+}
+.circle{
+    background-color: purple;
+    border-radius: 50%;
 }
