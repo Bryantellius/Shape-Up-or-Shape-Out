@@ -1,5 +1,12 @@
 let drawingSurface = document.getElementById('drawingSurface');
 
+let nameSpan = document.getElementById('nameSpan');
+let widthSpan = document.getElementById('widthSpan');
+let heightSpan = document.getElementById('heightSpan');
+let radiusSpan = document.getElementById('radiusSpan');
+let areaSpan = document.getElementById('areaSpan');
+let perimeterSpan = document.getElementById('perimeterSpan');
+
 let rectBtn = document.getElementById('rectBtn');
 let squareBtn = document.getElementById('squareBtn');
 let circleBtn = document.getElementById('circleBtn');
@@ -24,41 +31,51 @@ let removeShape = (object) => {
         drawingSurface.removeChild(object.div);
     })
 }
+
+let removeSpan = () => {
+    feedbackName.removeChild(nameSpan);
+    feedbackWidth.removeChild(widthSpan);
+    feedbackHeight.removeChild(heightSpan);
+    feedbackRadius.removeChild(radiusSpan);
+    feedbackArea.removeChild(areaSpan);
+    feedbackPerimeter.removeChild(perimeterSpan);
+}
+
 // FEEDBACK SPAN FUNCTIONS
 let addNameSpan = (object) => {
-    // feedbackName.removeChild();
     let newSpan = document.createElement('span');
+    newSpan.className = 'nameSpan';
     newSpan.textContent = ` ${object.name}`;
     feedbackName.appendChild(newSpan);
 }
 let addWidthSpan = (object) => {
-    // feedbackWidth.removeChild();
     let newSpan = document.createElement('span');
+    newSpan.className = 'widthSpan';
     newSpan.textContent = ` ${object.width}px`;
     feedbackWidth.appendChild(newSpan);
 }
 let addHeightSpan = (object) => {
-    // feedbackHeight.removeChild();
     let newSpan = document.createElement('span');
+    newSpan.className = 'heightSpan';
     newSpan.textContent = ` ${object.height}px`;
     feedbackHeight.appendChild(newSpan);
 }
 let addRadiusSpan = (object) => {
-    // feedbackRadius.removeChild();
     let newSpan = document.createElement('span');
+    newSpan.className = 'radiusSpan';
     newSpan.textContent = ` ${object.radius}px`;
     console.log('test');
     feedbackRadius.appendChild(newSpan);
 }
 let addAreaSpan = (object) => {
-    // feedbackArea.removeChild();
     let newSpan = document.createElement('span');
+    newSpan.className = 'areaSpan';
     newSpan.textContent = ` ${object.area}px`;
     feedbackArea.appendChild(newSpan);
 }
 let addPerimeterSpan = (object) => {
-    // feedbackPerimeter.removeChild();
     let newSpan = document.createElement('span');
+    newSpan.className = 'perimeterSpan';
     newSpan.textContent = ` ${object.perimeter}px`;
     feedbackPerimeter.appendChild(newSpan);
 }
@@ -68,6 +85,7 @@ let addPerimeterSpan = (object) => {
 rectBtn.addEventListener('click', () => {
     let newShape = new Rectangle(rectWidth.value, rectHeight.value, 'Rectangle');
     newShape.div.addEventListener('click', () => {
+        removeSpan();
         addNameSpan(newShape);
         addWidthSpan(newShape);
         addHeightSpan(newShape);
@@ -79,6 +97,7 @@ rectBtn.addEventListener('click', () => {
 squareBtn.addEventListener('click', () => {
     let newShape = new Square(squSide.value, 'Square');
     newShape.div.addEventListener('click', () => {
+        removeSpan();
         addNameSpan(newShape);
         addWidthSpan(newShape);
         addHeightSpan(newShape);
@@ -90,6 +109,7 @@ squareBtn.addEventListener('click', () => {
 circleBtn.addEventListener('click', () => {
     let newShape = new Circle(radius.value, 'Circle');
     newShape.div.addEventListener('click', () => {
+        removeSpan();
         addNameSpan(newShape);
         addRadiusSpan(newShape);
         addAreaSpan(newShape);
@@ -100,6 +120,7 @@ circleBtn.addEventListener('click', () => {
 triBtn.addEventListener('click', () => {
     let newShape = new Triangle(triHeight.value, 'Triangle');
     newShape.div.addEventListener('click', () => {
+        removeSpan();
         addNameSpan(newShape);
         addWidthSpan(newShape);
         addHeightSpan(newShape);
