@@ -28,3 +28,8 @@
     background-color: purple;
     border-radius: 50%;
 }
+p{
+    border: 2px solid white;
+    border-radius: 1rem;
+    padding: 0 1rem;
+}

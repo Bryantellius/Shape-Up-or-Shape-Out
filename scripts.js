@@ -41,91 +41,67 @@ let removeSpan = () => {
     feedbackPerimeter.removeChild(perimeterSpan);
 }
 
-// FEEDBACK SPAN FUNCTIONS
-let addNameSpan = (object) => {
-    let newSpan = document.createElement('span');
-    newSpan.className = 'nameSpan';
-    newSpan.textContent = ` ${object.name}`;
-    feedbackName.appendChild(newSpan);
+// FEEDBACK SPAN FUNCTION
+let changeSpanFeedback = (object) => {
+    nameSpan.textContent = `${object.name}`;
+    widthSpan.textContent = `${object.width}px`;
+    heightSpan.textContent = `${object.height}px`;
+    radiusSpan.textContent = object.radius;
+    areaSpan.textContent = `${object.area}px`;
+    perimeterSpan.textContent = `${object.perimeter}px`;
 }
-let addWidthSpan = (object) => {
-    let newSpan = document.createElement('span');
-    newSpan.className = 'widthSpan';
-    newSpan.textContent = ` ${object.width}px`;
-    feedbackWidth.appendChild(newSpan);
-}
-let addHeightSpan = (object) => {
-    let newSpan = document.createElement('span');
-    newSpan.className = 'heightSpan';
-    newSpan.textContent = ` ${object.height}px`;
-    feedbackHeight.appendChild(newSpan);
-}
-let addRadiusSpan = (object) => {
-    let newSpan = document.createElement('span');
-    newSpan.className = 'radiusSpan';
-    newSpan.textContent = ` ${object.radius}px`;
-    console.log('test');
-    feedbackRadius.appendChild(newSpan);
-}
-let addAreaSpan = (object) => {
-    let newSpan = document.createElement('span');
-    newSpan.className = 'areaSpan';
-    newSpan.textContent = ` ${object.area}px`;
-    feedbackArea.appendChild(newSpan);
-}
-let addPerimeterSpan = (object) => {
-    let newSpan = document.createElement('span');
-    newSpan.className = 'perimeterSpan';
-    newSpan.textContent = ` ${object.perimeter}px`;
-    feedbackPerimeter.appendChild(newSpan);
-}
+
+// 
+let randomNum = () => Math.floor(Math.random() * (200 - 25)) + 25;
 
 // EVENT LISTENERS ON BUTTONS
 // EVENT LISTENERS ON DIVS
 rectBtn.addEventListener('click', () => {
-    let newShape = new Rectangle(rectWidth.value, rectHeight.value, 'Rectangle');
+    let newShape;
+    if(rectWidth.value === '' || rectHeight.value === ''){
+        newShape = new Rectangle(randomNum(), randomNum(), 'Rectangle');
+    }else{
+        newShape = new Rectangle(rectWidth.value, rectHeight.value, 'Rectangle');
+    }
     newShape.div.addEventListener('click', () => {
-        removeSpan();
-        addNameSpan(newShape);
-        addWidthSpan(newShape);
-        addHeightSpan(newShape);
-        addAreaSpan(newShape);
-        addPerimeterSpan(newShape);
+        changeSpanFeedback(newShape);
     })
     removeShape(newShape);
 })
 squareBtn.addEventListener('click', () => {
-    let newShape = new Square(squSide.value, 'Square');
+    let newShape;
+    if(squSide.value === ''){
+        newShape = new Square(randomNum(), 'Square');
+    }else{
+        newShape = new Square(squSide.value, 'Square');
+    }
     newShape.div.addEventListener('click', () => {
-        removeSpan();
-        addNameSpan(newShape);
-        addWidthSpan(newShape);
-        addHeightSpan(newShape);
-        addAreaSpan(newShape);
-        addPerimeterSpan(newShape);
+        changeSpanFeedback(newShape);
     })
     removeShape(newShape);
 })
 circleBtn.addEventListener('click', () => {
-    let newShape = new Circle(radius.value, 'Circle');
+    let newShape;
+    if(radius.value === ''){
+        newShape = new Circle(randomNum(), 'Circle');
+    }else{
+        newShape = new Circle(radius.value, 'Circle');
+    }
     newShape.div.addEventListener('click', () => {
-        removeSpan();
-        addNameSpan(newShape);
-        addRadiusSpan(newShape);
-        addAreaSpan(newShape);
-        addPerimeterSpan(newShape);
+        changeSpanFeedback(newShape);
     })
     removeShape(newShape);
 })
 triBtn.addEventListener('click', () => {
-    let newShape = new Triangle(triHeight.value, 'Triangle');
+    let newShape;
+    if(triHeight.value === ''){
+        newShape = new Triangle(randomNum(), 'Triangle');
+    }else{
+        newShape = new Triangle(triHeight.value, 'Triangle');
+    }
+    
     newShape.div.addEventListener('click', () => {
-        removeSpan();
-        addNameSpan(newShape);
-        addWidthSpan(newShape);
-        addHeightSpan(newShape);
-        addAreaSpan(newShape);
-        addPerimeterSpan(newShape);
+        changeSpanFeedback(newShape);
     })
     removeShape(newShape);
 })
@@ -191,15 +167,15 @@ class Square extends Shape {
 
 class Circle extends Shape {
     constructor(radius, name) {
-        super(radius, radius, name);
-        this.radius = radius;
+        super(radius*2, radius*2, name);
+        this.radius = `${radius}px`;
         this.div.className = 'shape circle';
         this.area();
         this.perimeter();
     }
 
     area = () => {
-        this.area = 3.14 * (parseInt(this.radius) * parseInt(this.radius));
+        this.area = Math.round(3.14 * (parseInt(this.radius) * parseInt(this.radius)));
     }
 
     perimeter = () => {
@@ -223,7 +199,7 @@ class Triangle extends Shape {
 
     perimeter = () => {
         let thirdSideSquared = (parseInt(this.height) * parseInt(this.height)) + (parseInt(this.height) * parseInt(this.height));
-        let thirdSide = Math.sqrt(thirdSideSquared);
+        let thirdSide = Math.round(Math.sqrt(thirdSideSquared));
         this.perimeter = 2 * parseInt(this.height) + thirdSide;
     }
 }

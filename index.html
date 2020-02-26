@@ -12,36 +12,48 @@
 
 <body>
     <div class="container my-3">
-        <div class="row border-dark rounded mb-3" id="inputDiv">
-            <div class="input-group my-1">
-                <input type="text" placeholder="width px" aria-label="width px" class="form-control" id="rectWidth">
-                <input type="text" placeholder="height px" aria-label="height px" class="form-control" id="rectHeight">
-                <div class="input-group-append">
-                    <button class="btn btn-primary rounded" id="rectBtn">Create Rectangle</button>
-                </div>
+        <div class="row">
+            <div class="col" id="instructions">
+                <ul>Instructions:
+                    <li>Input corresponding values into input boxes.</li>
+                    <li>Click the button to create a shape on the drawing surface.</li>
+                    <li>Clicking the buttons without entering values will generate a shape with random sizes.</li>
+                    <li>Click a shape below to view its details.</li>
+                    <li>Double click a shape below to remove it from the drawing surface.</li>
+                </ul>
             </div>
-            <div class="input-group my-1">
-                <input type="text" placeholder="side length px" aria-label="side length px" class="form-control"
-                    id="squSide">
-                <div class="input-group-append">
-                    <button class="btn btn-success rounded" id="squareBtn">Create Square</button>
+            <div class="col border-dark rounded mb-3" id="inputDiv">
+                <div class="input-group my-1 shadow">
+                    <input type="text" placeholder="width px" aria-label="width px" class="form-control" id="rectWidth">
+                    <input type="text" placeholder="height px" aria-label="height px" class="form-control" id="rectHeight">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary rounded" id="rectBtn">Create Rectangle</button>
+                    </div>
                 </div>
-            </div>
-            <div class="input-group my-1">
-                <input type="text" placeholder="radius px" aria-label="radius px" class="form-control" id="circRadius">
-                <div class="input-group-append">
-                    <button class="btn btn-info rounded" id="circleBtn">Create Circle</button>
+                <div class="input-group my-1 shadow">
+                    <input type="text" placeholder="side length px" aria-label="side length px" class="form-control"
+                        id="squSide">
+                    <div class="input-group-append">
+                        <button class="btn btn-success rounded" id="squareBtn">Create Square</button>
+                    </div>
                 </div>
-            </div>
-            <div class="input-group my-1">
-                <input type="text" placeholder="height px" aria-label="height px" class="form-control" id="triHeight">
-                <div class="input-group-append">
-                    <button class="btn btn-warning rounded" id="triBtn">Create Triangle</button>
+                <div class="input-group my-1 shadow">
+                    <input type="text" placeholder="radius px" aria-label="radius px" class="form-control" id="circRadius">
+                    <div class="input-group-append">
+                        <button class="btn btn-info rounded" id="circleBtn">Create Circle</button>
+                    </div>
+                </div>
+                <div class="input-group my-1 shadow">
+                    <input type="text" placeholder="height px" aria-label="height px" class="form-control" id="triHeight">
+                    <div class="input-group-append">
+                        <button class="btn btn-warning rounded" id="triBtn">Create Triangle</button>
+                    </div>
                 </div>
             </div>
         </div>
+        
         <div class="contentDiv row justify-content-center">
-            <div class="bg-dark" id="feedbackDiv">
+            <div class="bg-dark p-3 shadow" id="feedbackDiv">
                 <p id="shapeName">Shape Name: <span id="nameSpan"></span></p>
                 <p id="width">Width: <span id="widthSpan"></span></p>
                 <p id="height">Height: <span id="heightSpan"></span></p>
@@ -49,7 +61,7 @@
                 <p id="area">Area: <span id="areaSpan"></span></p>
                 <p id="perimeter">Perimeter: <span id="perimeterSpan"></span></p>
             </div>
-            <div class="bg-light border" id="drawingSurface">
+            <div class="bg-light border shadow" id="drawingSurface">
                 <span>Drawing Surface</span>
             </div>
         </div>
