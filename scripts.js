@@ -25,6 +25,8 @@ let feedbackRadius = document.getElementById('radius');
 let feedbackArea = document.getElementById('area');
 let feedbackPerimeter = document.getElementById('perimeter');
 
+let egg = document.getElementById('easterEgg');
+
 // DELETE SHAPE FUNCTION
 let removeShape = (object) => {
     object.div.addEventListener('dblclick', () => {
@@ -106,11 +108,10 @@ triBtn.addEventListener('click', () => {
     removeShape(newShape);
 })
 
-// PROTOTYPE CLASS, METHODS AND SUB-CLASSES
+// OBJECT CLASS, METHODS AND SUB-CLASSES
 class Shape {
     constructor(width, height, name) {
         this.randomCoord(0, 600);
-        this.randomCoord(0, 400);
         this.width = width;
         this.height = height;
         this.name = name;
@@ -203,3 +204,14 @@ class Triangle extends Shape {
         this.perimeter = 2 * parseInt(this.height) + thirdSide;
     }
 }
+
+egg.addEventListener('click', () => {
+    let newShape = new Rectangle(600, 100, 'Rectangle');
+    newShape.div.className = 'shape rect eggRectangle';
+    let newShape2 = new Square(150, 'Square');
+    newShape2.div.className = 'shape square eggSquare';
+    let newShape3 = new Triangle(150, 'Triangle');
+    newShape3.div.className = 'shape eggTriangle';
+    let newShape4 = new Circle(25, 'Circle');
+    newShape4.div.className = 'shape circle eggCircle';
+})

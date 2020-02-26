@@ -33,3 +33,28 @@ p{
     border-radius: 1rem;
     padding: 0 1rem;
 }
+#easterEgg:hover{
+    cursor: pointer;
+}
+.eggRectangle{
+    opacity: 100%;
+    top: 350px !important;
+    left: 200px !important;
+}
+.eggSquare{
+    opacity: 100%;
+    top: 200px !important;
+    left: 225px !important;
+}
+.eggTriangle{
+    opacity: 100%;
+    top: 75px !important;
+    left: 150px !important;
+    border-bottom: 150px solid yellow !important;
+    border-left: 150px solid transparent !important;
+}
+.eggCircle{
+    opacity: 100%;
+    top: 50px !important;
+    left: 350px !important;
+}
